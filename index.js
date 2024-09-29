@@ -8,13 +8,11 @@ note: Because the markup uses a form to capture new list items, this functionali
 AFTER ADDING AN ITEM, that item may be clicked in the todo list to mark it as done. 
 The item should be marked done by striking through the words using the text-decoration CSS property. 
 
-Additionally, clicking an item that's been marked as done should remove the item from the list.
+Additionally, clicking an item that's been marked as done should remove the item from the list.*/
 
-var button = document.querySelector("button"); // ToDo form's "add" button
-var list = document.querySelector("ul"); // ToDo list
-var listItem = list.querySelector('li'); // ToDo list item
-*/
 
+
+// on page load the listArea should be empty and the inputField should be empty
 
 // elements from DOM
 var form = document.getElementById("add-todo"); // form
@@ -25,32 +23,27 @@ var listArea = document.getElementById("todo-list"); // todo list area
 // add button event listener
 form.addEventListener("submit", function(e) {
     e.preventDefault(); // prevent form from refreshing when button is clicked
+    console.log(inputField.value); // console log is logging all user input with enter or add button
+    // ERROR: text input field is not clearing after each submission
+
+    //should not add a todo when clicking button without typing a value
+    //should not add a todo when clicking button if input is filled with only spaces
 
 
-
-
-}
-)
-
-
-    /*
+    // adding the following code made the first two tests fail
     var listItems = document.createElement('li');
     listItems.innerText = inputField.value;
     listArea.appendChild(listItems);
+
+
+
 });
-*/
-
-console.log(inputField.value);
-
-//function addItem(e) {
- //   var target = e.target; // get target of event
-//}
 
 
 
-    // on page load
-    // list should be empty
-    // input field should be empty
+
+
+
 
 
     // after user types a todo item in the input field AND presses "enter" OR clicks the "add" button
