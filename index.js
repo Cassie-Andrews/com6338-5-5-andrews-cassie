@@ -24,8 +24,6 @@ var list = document.getElementById("todo-list"); // todo list area
 // note: Because the markup uses a form to capture new list items, this functionality must be attached to a form submit event using JavaScript.
 form.addEventListener("submit", function(e) {
     e.preventDefault(); // prevent form from refreshing when button is clicked
-    console.log(input.value); // console log is logging all user input with enter or add button
-    // ERROR: text input field is not clearing after each submission
 
     // should add item when user presses "enter" OR clicks the "add" button
     if (input.value.trim() !== "") { // .trim() will trim whitespace, !== is not equal, "" is empty string
@@ -36,36 +34,29 @@ form.addEventListener("submit", function(e) {
         var listItemButton = document.createElement("button"); // generate button el within li el
         listItemButton.textContent = input.value; // li > button should contain text of todo
 
-
-    } else {
-        return  // won't add a todo when clicking button without typing a value OR with only spaces
+        // AFTER ADDING AN ITEM, that item may be clicked in the todo list to mark it as done. 
+        listItemButton.addEventListener("click", function() {
+            if (listItemButton.style.textDecoration === "line-through") { // clicking an item that's been marked as done should remove the item from the list.
+                list.removeChild(listItem);
+            } else { // mark the item as done w strike through using text-decoration CSS property.
+                listItemButton.style.textDecoration = "line-through"; 
+            }
+        });
+// clicking an item that's been marked as done should remove the item from the list.
+//}
+    } else { // if input is empty or only has spaces
+        return  // nothing will happen when clicking the add button
     }
-
+    
     // append button to li then add to the list
     list.appendChild(listItem);
     listItem.appendChild(listItemButton);
 
-    // set value of input el to empty string after adding todo
+    // set value of input to empty string after adding todo
     input.value = "";
-
 
 });
 
 
 
 
-
-
-
-
-    
-
-    
-
-
-//function completedItem() {
-    // AFTER ADDING AN ITEM, that item may be clicked in the todo list to mark it as done. 
-    // The item should be marked done by striking through the words using the text-decoration CSS property. 
-
-    // Additionally, clicking an item that's been marked as done should remove the item from the list.
-//}
