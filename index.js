@@ -26,18 +26,14 @@ form.addEventListener("submit", function(e) {
     console.log(inputField.value); // console log is logging all user input with enter or add button
     // ERROR: text input field is not clearing after each submission
 
-    //should not add a todo when clicking button without typing a value OR with only spaces
-    if (inputField.value.trim() === "") {
-        addButton.disabled = true;
+    // should not add a todo when clicking button without typing a value OR with only spaces
+    // should add item when user presses "enter" OR clicks the "add" button
+    if (inputField.value.trim() !== "") { // .trim() will trim whitespace, !== is not equal, "" is empty string
+        var listItem = document.createElement("li");
     } else {
-        addButton.disabled = false;
-
-    
+        return
     }
-    //should not add a todo when clicking button if input is filled with only spaces
 
-
-    // after user types a todo item in the input field AND presses "enter" OR clicks the "add" button
     // add the typed item inside the ul#todo-list element
     // note: Because the markup uses a form to capture new list items, this functionality must be attached to a form submit event using JavaScript.
 
