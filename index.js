@@ -12,30 +12,33 @@ Additionally, clicking an item that's been marked as done should remove the item
 
 
 
-// on page load the listArea should be empty and the inputField should be empty
+// on page load the listArea should be empty and the input should be empty
 
 // elements from DOM
 var form = document.getElementById("add-todo"); // form
-var inputField = form.querySelector("input"); // input field
+var input = form.querySelector("input"); // input field
 var addButton = form.querySelector("button"); // "add" button
-var listArea = document.getElementById("todo-list"); // todo list area
+var list = document.getElementById("todo-list"); // todo list area
 
 // add button event listener
 // note: Because the markup uses a form to capture new list items, this functionality must be attached to a form submit event using JavaScript.
 form.addEventListener("submit", function(e) {
     e.preventDefault(); // prevent form from refreshing when button is clicked
-    console.log(inputField.value); // console log is logging all user input with enter or add button
+    console.log(input.value); // console log is logging all user input with enter or add button
     // ERROR: text input field is not clearing after each submission
 
     // should add item when user presses "enter" OR clicks the "add" button
-    if (inputField.value.trim() !== "") { // .trim() will trim whitespace, !== is not equal, "" is empty string
-        // WHEN ADDING THE TODO ITEM TO THE LIST, that item MUST be a button element nested within a li element as depicted in the above markup.
-        // note: The reason for nesting the button within an li is that it allows the form to be completely keyboard accessible.
-        var listItem = document.createElement("li");
-        var button = document.createElement("button");
-        console.log(typeof listItem);
-        console.log(typeof button);
-        button.innerText = inputField.value;
+    if (input.value.trim() !== "") { // .trim() will trim whitespace, !== is not equal, "" is empty string
+        // WHEN ADDING THE TODO ITEM TO THE LIST, that item MUST be a button el nested within a li el.
+        // Nesting the button within a li is that it allows the form to be completely keyboard accessible.
+        
+        var listItem = document.createElement("li"); // generate li element when adding to do
+        
+        var listItemButton = document.createElement("button"); // generate button el within li el
+        // var listItemButton = list.querySelector("li > button");
+        // listItem.appendChild(listItemButton);
+        
+        listItemButton.textContent = input.value; // li > button should contain text of todo
 
 
     } else {
@@ -43,8 +46,8 @@ form.addEventListener("submit", function(e) {
     }
 
     // add the typed item inside the ul#todo-list element
-    listArea.appendChild(button);
-    listArea.appendChild(listItem);
+    list.appendChild(listItem);
+    listItem.appendChild(listItemButton);
 
 
 });
