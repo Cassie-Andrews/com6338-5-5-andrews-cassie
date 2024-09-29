@@ -12,15 +12,14 @@ Additionally, clicking an item that's been marked as done should remove the item
 
 
 
-// on page load the listArea should be empty and the input should be empty
 
-// elements from DOM
+
 var form = document.getElementById("add-todo"); // form
 var input = form.querySelector("input"); // input field
 var addButton = form.querySelector("button"); // "add" button
 var list = document.getElementById("todo-list"); // todo list area
 
-// add button event listener
+// EVENT LISTENER for "add" button
 // note: Because the markup uses a form to capture new list items, this functionality must be attached to a form submit event using JavaScript.
 form.addEventListener("submit", function(e) {
     e.preventDefault(); // prevent form from refreshing when button is clicked
@@ -34,29 +33,23 @@ form.addEventListener("submit", function(e) {
         var listItemButton = document.createElement("button"); // generate button el within li el
         listItemButton.textContent = input.value; // li > button should contain text of todo
 
-        // AFTER ADDING AN ITEM, that item may be clicked in the todo list to mark it as done. 
+        // EVENT LISTENER for list item buttons
+        // items in the todo list display may be clicked 1x to mark as done, 2x to remove 
         listItemButton.addEventListener("click", function() {
-            if (listItemButton.style.textDecoration === "line-through") { // clicking an item that's been marked as done should remove the item from the list.
+            if (listItemButton.style.textDecoration === "line-through") { // 2nd click removes item
                 list.removeChild(listItem);
-            } else { // mark the item as done w strike through using text-decoration CSS property.
+            } else { // 1st click strike through using text-decoration CSS property
                 listItemButton.style.textDecoration = "line-through"; 
             }
         });
-// clicking an item that's been marked as done should remove the item from the list.
-//}
-    } else { // if input is empty or only has spaces
+    } else { // if input field is empty or only has spaces
         return  // nothing will happen when clicking the add button
     }
     
     // append button to li then add to the list
-    list.appendChild(listItem);
     listItem.appendChild(listItemButton);
+    list.appendChild(listItem);
 
-    // set value of input to empty string after adding todo
+    // set value of input to empty string after adding each todo
     input.value = "";
-
 });
-
-
-
-
