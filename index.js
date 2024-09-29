@@ -16,13 +16,6 @@ var listItem = list.querySelector('li'); // ToDo list item
 */
 
 
-// prevent form from refreshing when button is clicked
-form.onsubmit = function(e) {
-    e.preventDefault(); 
- 
- }
-
-
 // elements from DOM
 var form = document.getElementById("add-todo"); // form
 var inputField = form.querySelector("input"); // input field
@@ -30,11 +23,22 @@ var addButton = form.querySelector("button"); // "add" button
 var listArea = document.getElementById("todo-list"); // todo list area
 
 // add button event listener
-addButton.addEventListener("click", function() {
+form.addEventListener("submit", function(e) {
+    e.preventDefault(); // prevent form from refreshing when button is clicked
+
+
+
+
+}
+)
+
+
+    /*
     var listItems = document.createElement('li');
     listItems.innerText = inputField.value;
     listArea.appendChild(listItems);
 });
+*/
 
 console.log(inputField.value);
 
