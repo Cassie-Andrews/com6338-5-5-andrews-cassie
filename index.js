@@ -27,10 +27,11 @@ form.addEventListener("submit", function(e) {
     // ERROR: text input field is not clearing after each submission
 
     //should not add a todo when clicking button without typing a value OR with only spaces
-    if (inputField.value.length > 0){
-        var listItems = document.createElement('li');
-        listItems.innerText = inputField.value;
-        listArea.appendChild(listItems);
+    if (inputField.value.trim() === "") {
+        addButton.disabled = true;
+    } else {
+        addButton.disabled = false;
+
     
     }
     //should not add a todo when clicking button if input is filled with only spaces
@@ -45,7 +46,9 @@ form.addEventListener("submit", function(e) {
     // note: The reason for nesting the button within an li is that it allows the form to be completely keyboard accessible.
 
     // ERROR: adding the following code made the first two tests concerning input types fail
-
+    var listItems = document.createElement('li');
+    listItems.innerText = inputField.value;
+    listArea.appendChild(listItems);
 
 
 });
