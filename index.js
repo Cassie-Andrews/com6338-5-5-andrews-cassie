@@ -33,11 +33,7 @@ form.addEventListener("submit", function(e) {
         // Nesting the button within a li is that it allows the form to be completely keyboard accessible.
         
         var listItem = document.createElement("li"); // generate li element when adding to do
-        
         var listItemButton = document.createElement("button"); // generate button el within li el
-        // var listItemButton = list.querySelector("li > button");
-        // listItem.appendChild(listItemButton);
-        
         listItemButton.textContent = input.value; // li > button should contain text of todo
 
 
@@ -45,9 +41,12 @@ form.addEventListener("submit", function(e) {
         return  // won't add a todo when clicking button without typing a value OR with only spaces
     }
 
-    // add the typed item inside the ul#todo-list element
+    // append button to li then add to the list
     list.appendChild(listItem);
     listItem.appendChild(listItemButton);
+
+    // set value of input el to empty string after adding todo
+    input.value = "";
 
 
 });
