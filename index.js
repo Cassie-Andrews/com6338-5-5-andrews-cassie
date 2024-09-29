@@ -21,25 +21,26 @@ var addButton = form.querySelector("button"); // "add" button
 var listArea = document.getElementById("todo-list"); // todo list area
 
 // add button event listener
+// note: Because the markup uses a form to capture new list items, this functionality must be attached to a form submit event using JavaScript.
 form.addEventListener("submit", function(e) {
     e.preventDefault(); // prevent form from refreshing when button is clicked
     console.log(inputField.value); // console log is logging all user input with enter or add button
     // ERROR: text input field is not clearing after each submission
 
-    // should not add a todo when clicking button without typing a value OR with only spaces
     // should add item when user presses "enter" OR clicks the "add" button
     if (inputField.value.trim() !== "") { // .trim() will trim whitespace, !== is not equal, "" is empty string
+        // WHEN ADDING THE TODO ITEM TO THE LIST, that item MUST be a button element nested within a li element as depicted in the above markup.
+        // note: The reason for nesting the button within an li is that it allows the form to be completely keyboard accessible.
         var listItem = document.createElement("li");
+        var button = document.createElement("button");
+        console.log(typeof listItem);
+        console.log(typeof button);
     } else {
-        return
+        return  // won't add a todo when clicking button without typing a value OR with only spaces
     }
 
     // add the typed item inside the ul#todo-list element
-    // note: Because the markup uses a form to capture new list items, this functionality must be attached to a form submit event using JavaScript.
 
-
-    // WHEN ADDING THE TODO ITEM TO THE LIST, that item MUST be a button element nested within a li element as depicted in the above markup.
-    // note: The reason for nesting the button within an li is that it allows the form to be completely keyboard accessible.
 
     // ERROR: adding the following code made the first two tests concerning input types fail
     var listItems = document.createElement('li');
