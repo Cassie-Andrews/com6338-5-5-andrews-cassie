@@ -35,17 +35,16 @@ form.addEventListener("submit", function(e) {
         var button = document.createElement("button");
         console.log(typeof listItem);
         console.log(typeof button);
+        button.innerText = inputField.value;
+
+
     } else {
         return  // won't add a todo when clicking button without typing a value OR with only spaces
     }
 
     // add the typed item inside the ul#todo-list element
-
-
-    // ERROR: adding the following code made the first two tests concerning input types fail
-    var listItems = document.createElement('li');
-    listItems.innerText = inputField.value;
-    listArea.appendChild(listItems);
+    listArea.appendChild(button);
+    listArea.appendChild(listItem);
 
 
 });
